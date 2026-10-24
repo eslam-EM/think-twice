@@ -25,6 +25,18 @@ jobs:
           set -o pipefail
           npx expo prebuild --platform android --no-install 2>&1 | tee -a build.log
           echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+      - name: Create a per-build release signing key (not stored anywhere)
+        run: |
+          PASS=$(openssl rand -hex 16)
+          echo "::add-mask::$PASS"
+          keytool -genkeypair -storetype PKCS12 -keystore "$RUNNER_TEMP/release.p12" -alias thinktwice -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass "$PASS" -keypass "$PASS" -dname "CN=Think Twice, O=Think Twice, C=EG"
+          {
+            echo "TT_UPLOAD_STORE_FILE=$RUNNER_TEMP/release.p12"
+            echo "TT_UPLOAD_STORE_PASSWORD=$PASS"
+            echo "TT_UPLOAD_KEY_ALIAS=thinktwice"
+            echo "TT_UPLOAD_KEY_PASSWORD=$PASS"
+          } >> "$GITHUB_ENV"
       - name: Gradle assembleRelease
         working-directory: android
         run: |
@@ -36,6 +48,11 @@ jobs:
         run: |
           grep -nE "error|Error|FAILED|What went wrong|Could not" build.log | tail -40 | while IFS= read -r l; do echo "::error::${l:0:900}"; done
           tail -15 build.log | while IFS= read -r l; do echo "::error::TAIL ${l:0:900}"; done
+      - name: Verify signature is not the debug key
+        run: |
+          BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --print-certs android/app/build/outputs/apk/release/app-release.apk | tee cert.txt
+          if grep -q 'CN=Android Debug' cert.txt; then echo '::error::APK is debug-signed'; exit 1; fi
       - run: cp android/app/build/outputs/apk/release/app-release.apk ThinkTwice.apk
       - uses: actions/upload-artifact@v4
         with: { name: ThinkTwice-apk, path: ThinkTwice.apk }
@@ -43,7 +60,7 @@ jobs:
         with:
           tag_name: build-${{ github.run_number }}
           name: Think Twice APK (build ${{ github.run_number }})
-          body: Installable APK built automatically by GitHub Actions. Signed with the debug key (fine for installing directly; not for Google Play).
+          body: Installable APK built automatically by GitHub Actions, signed with a per-build release key. To update, uninstall the previous version first.
           files: ThinkTwice.apk
 
   smoke-test:
