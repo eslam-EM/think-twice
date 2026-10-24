@@ -1,0 +1,19 @@
+node_modules/
+.expo/
+dist/
+web-build/
+android/
+ios/
+.asset-tmp/
+*.log
+# Signing material — never commit
+credentials/
+*.jks
+*.keystore
+!android/app/debug.keystore
+output/*.apk
+output/*.sha256
+output/*.zip
+output/*.png
+credentials/
+.asset-tmp/

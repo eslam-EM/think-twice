@@ -1,0 +1,82 @@
+[
+  {
+    "name": "document is RTL",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "\"التالي\" disabled until a person is chosen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "opener addresses mom (masculine default)",
+    "ok": true,
+    "detail": "ماما، أنا محتاج مساعدتك في حاجة مضايقاني ومش عارف أتصرف فيها لوحدي. ممكن نقعد نتكلم؟"
+  },
+  {
+    "name": "opener can be edited",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "best choice gets positive feedback",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "\"تحدي جديد\" returns to situations",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "harsh choice is flagged and best answer shown",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "verifying the source is rated excellent",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "\"تحدي جديد\" opens a different scenario",
+    "ok": true,
+    "detail": "فيديو منتشر عنوانه «عاجل!! صدق أو لا تصد"
+  },
+  {
+    "name": "digital progress counts 1 challenge",
+    "ok": true,
+    "detail": "لقد أكملت 1 من 5 تحديات"
+  },
+  {
+    "name": "kalma progress counts 2 distinct challenges",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "name persisted after restart",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "opener switches to feminine forms",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "progress persisted after restart",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "no horizontal overflow at 360px",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "no uncaught page errors",
+    "ok": true,
+    "detail": ""
+  }
+]

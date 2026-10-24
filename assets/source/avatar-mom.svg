@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><style>@font-face{font-family:Cairo;font-weight:900;src:url('file:///home/user/think-twice/node_modules/@expo-google-fonts/cairo/900Black/Cairo_900Black.ttf')}@font-face{font-family:Cairo;font-weight:700;src:url('file:///home/user/think-twice/node_modules/@expo-google-fonts/cairo/700Bold/Cairo_700Bold.ttf')}</style></defs><circle cx="100" cy="100" r="100" fill="#FFE1EA"/>
+    <path d="M40 200 C40 150 70 132 100 132 C130 132 160 150 160 200Z" fill="#E9708F"/>
+    <rect x="88" y="112" width="24" height="26" rx="10" fill="#F2C6A0"/>
+    <path d="M56 90 C52 40 148 40 144 90 L150 150 L50 150Z" fill="#3A2A2A"/><circle cx="100" cy="86" r="38" fill="#F2C6A0"/><path d="M62 80 C64 48 136 48 138 80 C120 64 84 62 62 80Z" fill="#3A2A2A"/>
+    <circle cx="86" cy="88" r="4" fill="#2B2350"/><circle cx="114" cy="88" r="4" fill="#2B2350"/>
+    <path d="M88 104 Q100 112 112 104" stroke="#B5655A" stroke-width="4" fill="none" stroke-linecap="round"/></svg>

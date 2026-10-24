@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "ثانية تفكير",
+    "slug": "think-twice",
+    "version": "1.0.0",
+    "scheme": "thinktwice",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F4F2FF",
+    "newArchEnabled": true,
+    "description": "Think Twice — فكر قبل أن تتحدث أو تنشر أو تتخذ قرارًا",
+    "ios": { "supportsTablet": false, "bundleIdentifier": "com.thinktwice.app" },
+    "android": {
+      "package": "com.thinktwice.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-foreground.png",
+        "monochromeImage": "./assets/images/adaptive-monochrome.png",
+        "backgroundColor": "#F4F2FF"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": ["android.permission.POST_NOTIFICATIONS", "android.permission.VIBRATE"],
+      "blockedPermissions": ["android.permission.RECORD_AUDIO", "android.permission.READ_EXTERNAL_STORAGE", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.SYSTEM_ALERT_WINDOW"]
+    },
+    "web": { "bundler": "metro", "output": "single", "favicon": "./assets/images/logo.png" },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-asset",
+      "expo-audio",
+      ["expo-localization", { "supportsRTL": true, "forcesRTL": true }],
+      ["expo-splash-screen", { "image": "./assets/images/splash.png", "imageWidth": 240, "resizeMode": "contain", "backgroundColor": "#F4F2FF" }],
+      ["expo-notifications", { "icon": "./assets/images/notification-icon.png", "color": "#5B4FD9" }],
+      ["expo-build-properties", { "android": { "compileSdkVersion": 36, "targetSdkVersion": 36, "buildToolsVersion": "36.0.0", "minSdkVersion": 24 } }],
+      "./plugins/withForcedRTL",
+      "./plugins/withReleaseSigning"
+    ],
+    "experiments": { "typedRoutes": true }
+  }
+}

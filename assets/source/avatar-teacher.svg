@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><style>@font-face{font-family:Cairo;font-weight:900;src:url('file:///home/user/think-twice/node_modules/@expo-google-fonts/cairo/900Black/Cairo_900Black.ttf')}@font-face{font-family:Cairo;font-weight:700;src:url('file:///home/user/think-twice/node_modules/@expo-google-fonts/cairo/700Bold/Cairo_700Bold.ttf')}</style></defs><circle cx="100" cy="100" r="100" fill="#FFEBDD"/>
+    <path d="M40 200 C40 150 70 132 100 132 C130 132 160 150 160 200Z" fill="#F29A5B"/>
+    <rect x="88" y="112" width="24" height="26" rx="10" fill="#F2C6A0"/>
+    <path d="M60 92 C56 44 144 44 140 92 L136 124 L64 124Z" fill="#6B3E26"/><circle cx="100" cy="86" r="38" fill="#F2C6A0"/><path d="M64 78 C70 50 130 50 136 78 C116 66 86 64 64 78Z" fill="#6B3E26"/>
+    <circle cx="86" cy="88" r="4" fill="#2B2350"/><circle cx="114" cy="88" r="4" fill="#2B2350"/>
+    <path d="M88 104 Q100 112 112 104" stroke="#B5655A" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="76" y="80" width="20" height="14" rx="6" fill="none" stroke="#2B2350" stroke-width="3"/><rect x="104" y="80" width="20" height="14" rx="6" fill="none" stroke="#2B2350" stroke-width="3"/><path d="M96 86 L104 86" stroke="#2B2350" stroke-width="3"/></svg>
