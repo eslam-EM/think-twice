@@ -29,7 +29,7 @@ export function Screen({ title, subtitle, children, back = true, right, scroll =
       <StatusBar style="dark" />
       <LinearGradient colors={['#FFFFFF', colors.bg]} style={StyleSheet.absoluteFill} />
       <SafeAreaView style={s.root} edges={edges}>
-        {title || back ? (
+        {title || back || right ? (
           <View style={s.header}>
             {back ? (
               <Pressable onPress={goBack} hitSlop={10} accessibilityRole="button" accessibilityLabel="رجوع" style={s.headerBtn} testID="back">

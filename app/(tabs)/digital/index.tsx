@@ -9,7 +9,7 @@ import { colors, space } from '@/constants/theme';
 /** Screen 8 — ثانية تفكير home. */
 export default function DigitalHome() {
   return (
-    <Screen title="ثانية تفكير" subtitle="مواقف رقمية .. قرارات أذكى">
+    <Screen title="ثانية تفكير" subtitle="مواقف رقمية .. قرارات أذكى" back={false}>
       <View style={st.logo}><Logo size={84} /></View>
       {categories.map((c) => (
         <SectionCard key={c.id} title={c.title} kicker={c.subtitle} lines="" icon={c.icon}

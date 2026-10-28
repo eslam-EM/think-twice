@@ -36,21 +36,25 @@ const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); c
 
   try {
     await page.goto(BASE);
-    await tid('start').waitFor({ timeout: 20000 });
+    await tid('home-kalma').waitFor({ timeout: 20000 });
     check('document is RTL', (await page.evaluate(() => document.documentElement.dir)) === 'rtl');
+    const homeTab = await tid('tab-index').boundingBox();
+    const lastTab = await tid('tab-progress').boundingBox();
+    check('bottom branch bar is right-to-left', homeTab.x > lastTab.x, `home.x=${Math.round(homeTab.x)} progress.x=${Math.round(lastTab.x)}`);
     await shot('01-home.png');
-    await tid('start').click();
-    await tid('section-kalma').waitFor();
-    await shot('02-sections.png');
+    await page.mouse.wheel(0, 900);
+    await page.waitForTimeout(300);
+    await shot('02-home-scrolled.png');
 
     // كلمة بداية flow
-    await tid('section-kalma').click();
+    await tid('tab-kalma').click();
     await tid('situation-help').waitFor();
     await shot('03-kalma-situations.png');
     await tid('situation-help').click();
     await tid('person-mom').waitFor();
     check('"التالي" disabled until a person is chosen', (await tid('next').getAttribute('aria-disabled')) === 'true');
     await tid('person-mom').click();
+    check('branch bar stays visible inside a branch', await tid('tab-index').isVisible());
     await shot('04-kalma-person.png');
     await tid('next').click();
     await tid('opener-text').waitFor();
@@ -103,13 +107,36 @@ const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); c
     const nextQ = await tid('situation').innerText();
     check('"تحدي جديد" opens a different scenario', !nextQ.includes('الدراسة اتلغت'), nextQ.slice(0, 40));
 
+    // Chat (offline quick replies)
+    await tid('tab-chat').click();
+    await tid('chat-input').waitFor();
+    const bots = () => page.getByTestId('bot-msg').filter({ visible: true });
+    await page.getByTestId('quick-شفت خبر ومش متأكد منه').filter({ visible: true }).click();
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="bot-msg"]').length >= 2);
+    const first = await bots().nth(1).innerText();
+    check('quick question gets a news reply', /مصدر|خبر|نشر|إشاع|رسمي|شارك|العناوين|الصور|المستفيد|دكتور/.test(first), first.slice(0, 50));
+    await shot('16-chat.png');
+    await tid('another-reply').click();
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="bot-msg"]').length >= 3);
+    const second = await bots().nth(2).innerText();
+    check('"رد آخر" gives a different reply', second !== first, second.slice(0, 50));
+    await tid('chat-input').fill('حد في المدرسة بيهددني');
+    await tid('chat-send').click();
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="bot-msg"]').length >= 4);
+    check('danger message gets the 16000 safety reply', (await bots().nth(3).innerText()).includes('16000'));
+    await tid('chat-input').fill('قطة سودا طايرة');
+    await tid('chat-send').click();
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="bot-msg"]').length >= 5);
+    check('unknown message gets a helpful fallback + quick questions', (await page.getByTestId('quick-إزاي أبدأ كلام مع أهلي؟').filter({ visible: true }).count()) === 1);
+    await shot('17-chat-more.png');
+
     // Progress
     await page.goto(BASE + '/progress');
     await tid('progress-text').waitFor();
     const digitalTxt = await tid('progress-text').innerText();
     check('digital progress counts 1 challenge', digitalTxt.includes('أكملت 1 من 5'), digitalTxt);
     await shot('12-progress.png');
-    await tid('tab-kalma').click();
+    await tid('ptab-kalma').click();
     check('kalma progress counts 2 distinct challenges', (await tid('progress-text').innerText()).includes('أكملت 2 من 5'));
 
     // Settings + persistence + gender
@@ -120,8 +147,8 @@ const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); c
     await page.waitForTimeout(500);
     await shot('13-settings.png');
     await page.goto(BASE);
-    await tid('start').waitFor();
-    check('name persisted after restart', (await page.getByText('أهلًا يا سلمى!').count()) === 1);
+    await tid('greeting').waitFor();
+    check('name persisted after restart', (await tid('greeting').innerText()).includes('أهلًا يا سلمى!'));
     await page.goto(BASE + '/kalma/opener?situation=help&person=mom');
     await tid('opener-text').waitFor();
     check('opener switches to feminine forms', (await tid('opener-text').innerText()).includes('محتاجة مساعدتك'));
@@ -135,8 +162,8 @@ const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); c
     await shot('15-about.png');
 
     await page.setViewportSize({ width: 360, height: 640 });
-    await page.goto(BASE + '/sections');
-    await tid('section-kalma').waitFor();
+    await page.goto(BASE);
+    await tid('home-kalma').waitFor();
     check('no horizontal overflow at 360px', !(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)));
   } catch (e) {
     check('walkthrough completed without exceptions', false, String(e).slice(0, 300));

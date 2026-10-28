@@ -35,10 +35,10 @@ export default function Progress() {
   const shown = Math.min(done, goal);
   const lit = Math.round((shown / goal) * 5);
   return (
-    <Screen title="تحدياتك">
+    <Screen title="تحدياتك" back={false}>
       <View style={st.tabs}>
         {([['kalma', 'كلمة بداية'], ['digital', 'ثانية تفكير']] as const).map(([id, label]) => (
-          <Pressable key={id} onPress={() => setTab(id)} style={[st.tab, tab === id && st.tabOn]} accessibilityRole="tab" accessibilityState={{ selected: tab === id }} testID={`tab-${id}`}>
+          <Pressable key={id} onPress={() => setTab(id)} style={[st.tab, tab === id && st.tabOn]} accessibilityRole="tab" accessibilityState={{ selected: tab === id }} testID={`ptab-${id}`}>
             <T v="bodyStrong" center color={tab === id ? '#fff' : colors.textSecondary}>{label}</T>
           </Pressable>
         ))}

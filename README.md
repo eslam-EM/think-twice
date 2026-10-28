@@ -6,6 +6,13 @@
 - **ثانية تفكير (digital situations):** 6 topics × 2 scenarios. Messages: provoking message, strange request, group pressure. News: unreliable news, harmful content, suspicious ads/prizes. Each scenario follows think → choose → evaluation → tip → new challenge.
 - **Other screens:** progress (distinct challenges, ring, flames, no pressure streaks), settings (name, gender, optional daily reminder, sound, vibration, reset), help (including Egypt's Child Helpline 16000), about.
 
+- **Navigation:** a fixed bottom branch bar (الرئيسية · كلمة بداية · ⌨ الشات · ثانية تفكير · تقدّمي). Each branch keeps its own pages, which scroll vertically.
+- **Offline quick-reply chat (no AI):** 15 topics, about 10 replies each (around 150 replies in total).
+  - Arabic keyword matching with spelling normalization.
+  - The «رد آخر» button gives a different reply and doesn't repeat one until all have been shown.
+  - Danger keywords (self-harm, threats, harassment, blackmail) always win, and the reply points the student to a trusted adult and the Child Helpline 16000.
+  - The reply bank lives in `data/chat.ts`. To add a reply, add a line to the topic's `replies` list.
+
 There are no accounts, ads or analytics. All data stays on the device.
 
 Stack: Expo SDK 54 · React Native 0.81 · TypeScript · Expo Router · Cairo font · forced RTL. Package: `com.thinktwice.app`.

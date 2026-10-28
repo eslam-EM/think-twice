@@ -5,7 +5,17 @@
     "detail": ""
   },
   {
+    "name": "bottom branch bar is right-to-left",
+    "ok": true,
+    "detail": "home.x=312 progress.x=0"
+  },
+  {
     "name": "\"التالي\" disabled until a person is chosen",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "branch bar stays visible inside a branch",
     "ok": true,
     "detail": ""
   },
@@ -43,6 +53,26 @@
     "name": "\"تحدي جديد\" opens a different scenario",
     "ok": true,
     "detail": "فيديو منتشر عنوانه «عاجل!! صدق أو لا تصد"
+  },
+  {
+    "name": "quick question gets a news reply",
+    "ok": true,
+    "detail": "حتى لو كتبت «مش متأكد»، المشاركة بتنشر الخبر. الأح"
+  },
+  {
+    "name": "\"رد آخر\" gives a different reply",
+    "ok": true,
+    "detail": "ثانية تفكير قبل «مشاركة» ممكن تمنع إشاعة توصل لآلا"
+  },
+  {
+    "name": "danger message gets the 16000 safety reply",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "name": "unknown message gets a helpful fallback + quick questions",
+    "ok": true,
+    "detail": ""
   },
   {
     "name": "digital progress counts 1 challenge",
